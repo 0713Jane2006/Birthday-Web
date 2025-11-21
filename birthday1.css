@@ -13,23 +13,23 @@ body{
 }
 .page-title{
     position:absolute;
-    top:20px;
-    left:20px;
+    top:2vw;
+    left:2vw;
     font-family: '微软雅黑';
-    font-size: 40px;
+    font-size: 3.5vw;
     color:#fff;
     z-index:10;
 }
 .navigator{
     position:absolute;
-    top:25px;
-    right:5px;
-    margin:0 30px;
+    top:2.5vw;
+    right:0.5vw;
+    margin:0 3vw;
     z-index:10;
 }
 .navigator ul{
     display: flex;
-    gap:45px;
+    gap:4vw;
     list-style: none;
 }
 .navigator ul a{
