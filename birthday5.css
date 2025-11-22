@@ -18,47 +18,47 @@ body{
     width: 100%;
     height:100%;
     margin:0 auto;
-    padding: -5px 0;
+    padding: -0.5vw 0;
     text-align: center;
 }
 .title-section{
-    margin-top: 200px;
+    margin-top: 11vw;
 }
 .main-title{
     font-family: '微软雅黑';
-    font-size:35px;
+    font-size:2.3vw;
     font-weight:bold;
     color: black;
-    margin-top: -60px;
-    margin-bottom: 20px;
+    margin-top: -3vw;
+    margin-bottom: 1vw;
 }
 .title-line{
-    width:90px;
-    height: 3px;
+    width:6vw;
+    height: 0.2vw;
     background-color: #ff8a9a;
-    margin:10px auto 0;
+    margin:1vw auto 0;
 }
 .navigator{
     position:absolute;
-    top:15px;
-    right:5px;
-    margin:0 30px;
+    top:1.5vw;
+    right:0.5vw;
+    margin:0 0.3vw;
     z-index:10;
     font-family: '宋体';
 }
 .navigator ul{
     display: flex;
-    gap:45px;
+    gap:3vw;
     list-style: none;
 }
 .navigator ul a{
-    font-size: 20px;
+    font-size: 1.2vw;
     color:white;
     cursor:pointer;
     text-decoration: none;
 }
 .navigator ul a.only-underline{
-    font-size: 20px;
+    font-size: 1.2vw;
     color:white;
     cursor:pointer;
     font-family: '宋体';
@@ -66,49 +66,44 @@ body{
 }
 .desc-text{
     font-family: '宋体';
-    font-size:22px;
+    font-size:1.4vw;
     color:black;
     line-height: 0.31;
-    margin-top:34px;
+    margin-top:1.4vw;
 }
  .timeline-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 2vw;
  }
  .item{
     width:calc(28% -20px);
-    padding:50px 0;
+    padding:1.1vw 0;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border:1.4px solid #e0e0e0;
-    border-bottom: 1.3px solid #e0e0e0;
-    margin: -20px 30px;
-    border-radius: 8px;
+    border:0.14vw solid #e0e0e0;
+    border-bottom: 0.3vw solid #e0e0e0;
+    margin: -2vw 3vw;
+    border-radius: 0.8vw;
     transition: box-shadow 0.3s;
  }
  .year{
-    font-size:18px;
+    font-size:1.2vw;
     font-weight: bold;
-    margin-top: -30px;
-    margin-bottom: 8px;
+    margin-top: 1vw;
+    margin-bottom: 0.8vw;
     color:black;
     font-family: '微软雅黑';
  }
  .content{
     font-family: '宋体';
-    font-size:20px;
+    font-size:1.2vw;
     line-height: 2;
     font-weight: normal;
     color:#666;
  }
-.bulb-icon{
-    color:#ff3333;
-    font-size:20px;
-    margin-right:8px;
-}
 .bg-img{
     min-height:80vh;
     margin:0;
@@ -117,11 +112,11 @@ body{
     filter: brightness(0.5);
 }
 .item-forever{
-    margin-top: 30px;
+    margin-top: -16vw;
 }
 .timeline-photo{
-    width:380px;
-    margin-top: 50px;
+    width:23vw;
+    margin-top: 2.5vw;
 }
 .love{
     color:#ff8a9a;
