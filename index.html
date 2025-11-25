@@ -42,7 +42,7 @@
     <script>
         document.addEventListener('click',()=>{
             const audioIframe=document.querySelector('iframe[src="audio-player.html"]');
-            audioIframe.contenWindow.postMessage('playMusic','*');
+            audioIframe.contentWindow.postMessage('playMusic','*');
         },{once:true});
     </script>
     <script>
