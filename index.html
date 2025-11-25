@@ -37,12 +37,19 @@
             </button>
             </div>
     </div>
-    <audio src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3"autoplay loop hidden></audio>
+    <iframe src="audio-player.html" style="width: 0;height: 0;border: 0;" allow="autoplay">
+    </iframe>
     <script>
-        const rightArrow=document.getElementById('rightArrowBtn');
-        rightArrow.addEventListener('click',function()
-        {
-            window.location.href="Birthday2.html";
+        document.addEventListener('click',()=>{
+            const audioIframe=document.querySelector('iframe[src="audio-player.html"]');
+            audioIframe.contenWindow.postMessage('playMusic','*');
+        },{once:true});
+    </script>
+    <script>
+        window.addEventListener('message',(e)=>{
+            if (e.data==='playMusic'){
+                audio.play();
+            }
         });
     </script>
 </body>

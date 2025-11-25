@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="bgMusic" src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3" preload="auto">
+    </audio>
+    <script>
+        const audio=doucument.getElementByID('bgMusic');
+        const STORAGE_KEY='musicState';
+        window.addEventListener('load',()=>
+    {
+        const saveState=JSNO.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+        if (saveState.currentTime)
+    {
+        audio.currentTime=saveState.currentTime;
+    }
+        if (saveState.isPlaying)
+    {
+        audio.play().catch(err=>{
+            document.addEventListener('click',()=>audio.play(),{once:true});
+        })
+    }
+    })
+    audio.addEventListener('play',()=>{
+        updateStorage(true);
+    });
+    audio.addEventListener('pause',()=>{
+        updateStorage(false);
+    });
+    audio.addEventListener('timeupdate',()=>{
+        updateStorage(audio.paused?false:true);
+    });
+    function updateStorage(isPlaying)
+    {
+        localStorage.updateStorage(isPlaying)
+        {
+            localStorage.setItem(STORAGE_KEY,JSON.stringify({
+                isPlaying:isPlaying,
+                currentTime:audio.currentTime
+            }));
+        }
+    }
+    </script>
+</body>
+</html>
