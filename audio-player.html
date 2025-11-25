@@ -13,7 +13,7 @@
         const STORAGE_KEY='musicState';
         window.addEventListener('load',()=>
     {
-        const saveState=JSNO.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+        const saveState=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
         if (saveState.currentTime)
     {
         audio.currentTime=saveState.currentTime;
