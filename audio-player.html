@@ -36,13 +36,10 @@
     });
     function updateStorage(isPlaying)
     {
-        localStorage.updateStorage(isPlaying)
-        {
-            localStorage.setItem(STORAGE_KEY,JSON.stringify({
-                isPlaying:isPlaying,
-                currentTime:audio.currentTime
-            }));
-        }
+        localStorage.setItem(STORAGE_KEY,JSON.stringify({
+            isPlaying:isPlaying,
+            currentTime:audio.currentTime
+        }));
     }
     </script>
 </body>
