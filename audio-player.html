@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <!-- 音频元素 -->
   <audio 
     id="bgMusic" 
     src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3" 
@@ -10,27 +9,22 @@
 
   <script>
     const audio = document.getElementById('bgMusic');
-    const STORAGE_KEY = 'musicState'; // localStorage的键名
+    const STORAGE_KEY = 'musicState'; 
 
-    // 1. 页面加载时，读取localStorage恢复播放状态
     window.addEventListener('load', () => {
       const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       
-      // 恢复播放进度
       if (savedState.currentTime) {
         audio.currentTime = savedState.currentTime;
       }
       
-      // 若之前是播放状态，恢复播放（需用户已交互过）
       if (savedState.isPlaying) {
         audio.play().catch(err => {
-          // 自动播放失败时（浏览器限制），等待用户交互后再播
           document.addEventListener('click', () => audio.play(), { once: true });
         });
       }
     });
 
-    // 2. 监听播放事件，实时更新localStorage的状态
     audio.addEventListener('play', () => {
       updateStorage(true);
     });
@@ -41,7 +35,6 @@
       updateStorage(audio.paused ? false : true);
     });
 
-    // 更新localStorage的工具函数
     function updateStorage(isPlaying) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         isPlaying: isPlaying,
