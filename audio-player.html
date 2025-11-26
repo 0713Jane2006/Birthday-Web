@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <!-- 音频元素 -->
   <audio 
     id="bgMusic" 
-    src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3" 
+    src="五月天 - 如果我们不曾相遇(Live)_VO.mp3" 
     preload="auto">
   </audio>
-
+  <button id="playBtn" style="padding: 8px 16px; font-size: 16px;">播放音乐</button>
   <script>
     const audio = document.getElementById('bgMusic');
-    const STORAGE_KEY = 'musicState'; 
+    const playBtn = document.getElementById('playBtn');
+    const STORAGE_KEY = 'musicState';
 
+// 初始化：从localStorage恢复状态
     window.addEventListener('load', () => {
-      const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      
-      if (savedState.currentTime) {
-        audio.currentTime = savedState.currentTime;
-      }
-      
-      if (savedState.isPlaying) {
-        audio.play().catch(err => {
-          document.addEventListener('click', () => audio.play(), { once: true });
-        });
-      }
+    const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+        isPlaying: false,
+        currentTime: 0
+     };
+     audio.currentTime = savedState.currentTime;
+  
+  // 按钮状态同步
+     if (savedState.isPlaying) {
+     playBtn.textContent = '暂停音乐';
+     }
     });
 
-    audio.addEventListener('play', () => {
-      updateStorage(true);
+// 按钮点击触发播放/暂停
+    playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+     audio.play().then(() => {
+        playBtn.textContent = '暂停音乐';
+        updateStorage(true);
+        });
+    } else {
+     audio.pause();
+     playBtn.textContent = '播放音乐';
+     updateStorage(false);
+    }
     });
-    audio.addEventListener('pause', () => {
-      updateStorage(false);
-    });
+
+// 保留原状态同步逻辑
     audio.addEventListener('timeupdate', () => {
-      updateStorage(audio.paused ? false : true);
+    updateStorage(audio.paused ? false : true);
     });
 
     function updateStorage(isPlaying) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
         isPlaying: isPlaying,
         currentTime: audio.currentTime
-      }));
+     }));
     }
   </script>
 </body>
