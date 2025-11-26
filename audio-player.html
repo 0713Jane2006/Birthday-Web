@@ -1,46 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html>
 <body>
-    <audio id="bgMusic" src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3" preload="auto">
-    </audio>
-    <script>
-        const audio=doucument.getElementByID('bgMusic');
-        const STORAGE_KEY='musicState';
-        window.addEventListener('load',()=>
-    {
-        const saveState=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
-        if (saveState.currentTime)
-    {
-        audio.currentTime=saveState.currentTime;
-    }
-        if (saveState.isPlaying)
-    {
-        audio.play().catch(err=>{
-            document.addEventListener('click',()=>audio.play(),{once:true});
-        })
-    }
-    })
-    audio.addEventListener('play',()=>{
-        updateStorage(true);
+  <!-- 音频元素 -->
+  <audio 
+    id="bgMusic" 
+    src="五月天 - 如果我们不曾相遇 (Live)_L (V0).mp3" 
+    preload="auto">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const STORAGE_KEY = 'musicState'; // localStorage的键名
+
+    // 1. 页面加载时，读取localStorage恢复播放状态
+    window.addEventListener('load', () => {
+      const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      
+      // 恢复播放进度
+      if (savedState.currentTime) {
+        audio.currentTime = savedState.currentTime;
+      }
+      
+      // 若之前是播放状态，恢复播放（需用户已交互过）
+      if (savedState.isPlaying) {
+        audio.play().catch(err => {
+          // 自动播放失败时（浏览器限制），等待用户交互后再播
+          document.addEventListener('click', () => audio.play(), { once: true });
+        });
+      }
     });
-    audio.addEventListener('pause',()=>{
-        updateStorage(false);
+
+    // 2. 监听播放事件，实时更新localStorage的状态
+    audio.addEventListener('play', () => {
+      updateStorage(true);
     });
-    audio.addEventListener('timeupdate',()=>{
-        updateStorage(audio.paused?false:true);
+    audio.addEventListener('pause', () => {
+      updateStorage(false);
     });
-    function updateStorage(isPlaying)
-    {
-        localStorage.setItem(STORAGE_KEY,JSON.stringify({
-            isPlaying:isPlaying,
-            currentTime:audio.currentTime
-        }));
+    audio.addEventListener('timeupdate', () => {
+      updateStorage(audio.paused ? false : true);
+    });
+
+    // 更新localStorage的工具函数
+    function updateStorage(isPlaying) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        isPlaying: isPlaying,
+        currentTime: audio.currentTime
+      }));
     }
-    </script>
+  </script>
 </body>
 </html>
