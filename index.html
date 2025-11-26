@@ -40,18 +40,19 @@
     <iframe src="audio-player.html" style="width:0; height:0; border:0;"allow="autoplay">
     </iframe>
     <script>
-        document.addEventListener('click',()=>{
-            const audioIframe=document.querySelector('iframe[src="audio-player.html"]');
-            audioIframe.contentWindow.postMessage('playMusic','*');
-        },{once:true});
+    document.addEventListener('click', () => {
+        const audioIframe = document.querySelector('iframe[src="audio-player.html"]');
+        audioIframe.contentWindow.postMessage('playMusic', '*');
+     }, { once: true }); 
     </script>
+
     <script>
-        window.addEventListener('message',(e)=>{
-            if (e.data==='playMusic'){
-                audio.play();
-            }
-        });
-    </script>
+     window.addEventListener('message', (e) => {
+        if (e.data === 'playMusic') {
+        audio.play();
+     }
+    });
+</script>
     <script>
         const rightArrow=document.getElementById('rightArrowBtn');
         rightArrow.addEventListener('click',function()
